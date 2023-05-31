@@ -1,4 +1,7 @@
-# MidLock
+<h1 align="center">MidLock</h1>
+<p align="center">
+  <img src="src/assets/LogoSinFondo.png" alt="LogoSinFondo">
+</p>
 Este repositorio contiene el código fuente y la documentación relacionada con el proyecto del sistema de "locker" de medicamentos. El objetivo de este proyecto es desarrollar un sistema automatizado para farmacias e instituciones de salud que permita el almacenamiento seguro y el acceso controlado a medicamentos mediante el uso de códigos QR.
 
 ## Componentes principales
