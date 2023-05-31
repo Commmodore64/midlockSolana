@@ -1,27 +1,28 @@
-# React-Tailwind-Vite Boilerplate
-Welcome to the React-Tailwind-Vite Boilerplate template! This is a modern, lightweight, and fast boilerplate for building web applications. With this template, you can quickly start building your next web application with ease.
+# MidLock
+Este repositorio contiene el código fuente y la documentación relacionada con el proyecto del sistema de "locker" de medicamentos. El objetivo de este proyecto es desarrollar un sistema automatizado para farmacias e instituciones de salud que permita el almacenamiento seguro y el acceso controlado a medicamentos mediante el uso de códigos QR.
 
-## What's included
-The repository contains a simple project setup with the following components:
+## Componentes principales
+Este repositorio contiene el proyecto integrador que tiene los siguientes componentes:
 
 - **React**, a JavaScript library for building user interfaces.
 - **Tailwind** CSS, a highly-customizable, low-level CSS framework.
 - **Vite**, a fast and efficient build tool for modern web development.
-- Additionally, this template includes best practices and a preconfigured setup to make your development experience as smooth as possible.
 
-## Getting Started
-To start using this template, simply clone the repository and install the dependencies:
+## Características principales
+- **Escaneo de códigos QR:** Los usuarios podrán acceder a su medicamento específico escaneando un código QR único asociado a su pedido.
 
+- **Almacenamiento seguro:** El sistema de "lockers" proporcionará casilleros individuales para cada paciente, garantizando la privacidad y seguridad de los medicamentos.
+
+- **Gestión eficiente:** Se implementará una interfaz intuitiva y amigable para facilitar la gestión de medicamentos por parte del personal de la farmacia o institución de salud.
+
+## Desplegue
 ```shell
-$ git clone https://github.com/NathanLazo/react-tailwind-vite.git
-$ cd react-tailwind-vite
+$ git clone https://github.com/Commmodore64/midlock.git/
+$ cd midlock
 $ npm install
 ```
-Once the dependencies are installed, you can start the development server:
+Una vez instalada las dependencias, puedes iniciar el servidor:
 ```shell
 $ npm run dev
 This will start the development server and you can access your application at http://localhost:``.
 ```
-
-# Conclusion
-This template provides a great starting point for building your next web application with React, Tailwind CSS, and Vite. By using this template, you can take advantage of best practices and a preconfigured setup, allowing you to focus on writing your application's code. Give it a try and let us know what you think!
