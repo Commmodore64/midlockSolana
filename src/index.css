@@ -53,6 +53,9 @@ h2 {
   border-radius: 50%;
   filter: blur(13px);
 }
+.icon {
+  color: white;
+}
 
 
 /* 
