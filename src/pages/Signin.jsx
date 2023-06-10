@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Logo from "../assets/LogoSinFondo.png";
 import Wallpaper5 from "../assets/wallpaper5.svg";
 import {useAuth} from "../context/authContext";
-import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Signin() {
   const auth = useAuth()
@@ -16,7 +16,6 @@ function Signin() {
     e.preventDefault();
     auth.loginWithGoogle();
   };
-  const ToastSucces = toast.success('Successfully toasted!');
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"
@@ -91,7 +90,7 @@ function Signin() {
       <div className="flex flex-col items-center justify-center h-screen">
         <div className="flex flex-row mt-auto mb-5">
           <p className="text-center pr-2">Not register yet?</p>
-          <button className="font-bold">Create Account</button>
+          <Link to="/signup" className="font-bold">Create Account</Link>
         </div>
       </div>
     </div>

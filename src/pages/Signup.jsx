@@ -3,6 +3,7 @@ import Logo from "../assets/LogoSinFondo.png";
 import Wallpaper5 from "../assets/wallpaper5.svg";
 import {useAuth} from "../context/authContext";
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Signup() {
   const auth = useAuth()
@@ -68,7 +69,7 @@ function Signup() {
       <div className="flex flex-col items-center justify-center h-screen">
         <div className="flex flex-row mt-auto mb-5">
           <p className="text-center pr-2">Already have an account?</p>
-          <button className="font-bold">Login</button>
+          <Link to="/" className="font-bold">Login</Link>
         </div>
       </div>
     </div>
