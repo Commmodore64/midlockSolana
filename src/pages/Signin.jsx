@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Logo from "../assets/LogoSinFondo.png";
 import Wallpaper5 from "../assets/wallpaper5.svg";
 import {useAuth} from "../context/authContext";
@@ -16,6 +16,23 @@ function Signin() {
     e.preventDefault();
     auth.loginWithGoogle();
   };
+  useEffect(() => {
+    const getUserUID = () => {
+      const storedUID = localStorage.getItem('uidToken'); // Obtener el UID almacenado en el almacenamiento local
+  
+      if (storedUID) {
+        console.log("UID del usuario:", storedUID);
+        window.location.href="/home";
+      } else {
+        console.log("No hay usuario autenticado");
+      }
+    };
+  
+    getUserUID();
+  }, []);
+  
+  
+
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"

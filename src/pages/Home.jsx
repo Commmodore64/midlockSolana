@@ -2,40 +2,42 @@ import React, { useEffect, useState } from "react";
 import TabBar from "../components/TabBar";
 import Wallpaper from "../assets/wallpaper.svg";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { database, auth } from "../firebase/firebase.config";
-import {uid} from "uid";
+import { uid } from "uid";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const storedUID = localStorage.getItem("uidToken");
 
-  const fetchData = async () => { //Obtener los datos de la realtime database
+  const fetchData = async () => {
     try {
       const databaseRef = ref(getDatabase());
       const snapshot = await onValue(databaseRef, (snapshot) => {
         const dataFromDB = snapshot.val();
-        setData(dataFromDB);
+        const filteredData = Object.entries(dataFromDB)
+          .map(([key, value]) => ({
+            id: key,
+            ...value,
+          }))
+          .filter((item) => item.id === storedUID);
+        setData(filteredData);
       });
     } catch (error) {
       console.log("Error al obtener datos: ", error);
     }
   };
-  useEffect(() => { // Obtener el uid del usuario
-    const getUserUID = () => {
-      if (auth.currentUser) {
-        const uid = auth.currentUser.uid;
-        console.log("UID del usuario:", uid);
-      } else {
-        console.log("No hay usuario autenticado");
-      }
-    };
-
-    getUserUID();
-  }, []);
 
   useEffect(() => {
-    fetchData();
+    if (storedUID) {
+      console.log("UID del usuario:", storedUID);
+      fetchData();
+    } else {
+      console.log("No hay usuario autenticado");
+      window.location.href = "/home";
+    }
   }, []);
-  console.log(data)
+  const storedUIDString = storedUID.toString();
+
+  console.log(data[0]);
   return (
     <div
       className="w-screen h-screen flex"
@@ -50,15 +52,18 @@ const Home = () => {
         <h2 className="text-xl font-semibold mt-10 ml-1">Med list</h2>
       </div>
       <div className="flex flex-col mt-4">
-        {Array.isArray(data) &&
-          data.map((item) => (
-            <div key={item.id} className="bg-white rounded-xl shadow p-4 mb-4">
-              <p>{data.title}</p>
-              <p>{item.description}</p>
-            </div>
-          ))}
-      </div>
+    {data.map((item) => {
+      const key = Object.keys(item)[0]; // Obtiene la clave dinámica
+      const { med, des } = item[key]; // Obtiene las propiedades med y des
 
+      return (
+        <div key={key} className="bg-white rounded-xl shadow p-4 mb-4">
+          <p>{med}</p>
+          <p>{des}</p>
+        </div>
+      );
+    })}
+  </div>
       <TabBar />
     </div>
   );

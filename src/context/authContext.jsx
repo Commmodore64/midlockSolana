@@ -29,8 +29,16 @@ export function AuthProvider({ children }) {
   };
   const login = async (email, password) => {
     const response = await signInWithEmailAndPassword(auth, email, password);
+    const { uid: uidToken, email: emailToken } = response.user; // Obtener el uid y el email del usuario
+  
+    // Almacenar el uid y el email en el almacenamiento local
+    localStorage.setItem('uidToken', uidToken);
+    localStorage.setItem('emailToken', emailToken);
+  
     console.log(response);
   };
+  
+  
   const loginWithGoogle = async () => {
     const responseGoogle = new GoogleAuthProvider();
     return await signInWithPopup(auth, responseGoogle);
