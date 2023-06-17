@@ -3,6 +3,7 @@ import TabBar from "../components/TabBar";
 import Wallpaper from "../assets/wallpaper.svg";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { uid } from "uid";
+import { MdModeEditOutline } from "react-icons/md";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -35,12 +36,9 @@ const Home = () => {
       window.location.href = "/";
     }
   }, []);
-  //const storedUIDString = storedUID.toString();
-
-  //console.log(data[0]);
   return (
     <div
-      className="w-screen h-screen flex"
+      className="w-screen h-screen flex flex-col"
       style={{
         backgroundImage: `url(${Wallpaper})`,
         backgroundRepeat: "repeat",
@@ -49,21 +47,37 @@ const Home = () => {
     >
       <div className="flex flex-col font-semibold text-4xl mt-12 ml-4">
         Home
-        <h2 className="text-xl font-semibold mt-10 ml-1">Med list</h2>
+        <h2 className="flex items-center justify-between text-xl font-semibold mt-10 ml-4">
+          <span className="mr-2">Med list</span>
+          <button className="flex items-center text-blue-500 hover:text-blue-700 focus:outline-none">
+            <span className="mr-5">
+              <MdModeEditOutline size={27} />
+            </span>
+          </button>
+        </h2>
       </div>
-      <div className="flex flex-col mt-36">
+      <div className="flex flex-col flex-grow px-4 mt-5">
         {data.map((item) => {
-          const keys = Object.keys(item); // Obtiene las claves del objeto
+          const keys = Object.keys(item);
           return keys
-            .filter((key) => key !== "id") // Filtra las claves y elimina la clave 'id'
+            .filter((key) => key !== "id")
             .map((key) => (
-              <div key={key} className="bg-white rounded-xl shadow p-4 mb-4">
-                <p>{item[key].med}</p>
-                <p>{item[key].des}</p>
+              <div
+                key={key}
+                className="bg-white rounded-2xl shadow-lg p-3.5 mb-4"
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-lg font-bold">{item[key].med}</p>
+                    <p className="text-lg font-bold">{item[key].des}</p>
+                  </div>
+                  <p className="text-lg font-bold">x{item[key].cant}</p>
+                </div>
               </div>
             ));
         })}
       </div>
+
       <TabBar />
     </div>
   );
