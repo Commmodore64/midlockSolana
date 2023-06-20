@@ -4,10 +4,12 @@ import Wallpaper from "../assets/wallpaper.svg";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { uid } from "uid";
 import { MdModeEditOutline } from "react-icons/md";
+import { io } from "socket.io-client";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const storedUID = localStorage.getItem("uidToken");
+  const socket = io('http://localhost:5173'); // Cambia la URL por la del servidor de websockets
 
   const fetchData = async () => {
     try {
@@ -35,7 +37,18 @@ const Home = () => {
       console.log("No hay usuario autenticado");
       window.location.href = "/";
     }
+
+    // Suscribirse al evento 'dataUpdated' del servidor de websockets
+    socket.on('dataUpdated', (updatedData) => {
+      setData(updatedData);
+    });
+
+    return () => {
+      // Desconectar el socket al desmontar el componente
+      socket.disconnect();
+    };
   }, []);
+
   return (
     <div
       className="w-screen h-screen flex flex-col"
