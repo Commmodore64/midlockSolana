@@ -23,6 +23,7 @@ const Home = () => {
           }))
           .filter((item) => item.id === storedUID);
         setData(filteredData);
+        //console.log(dataFromDB);
       });
     } catch (error) {
       console.log("Error al obtener datos: ", error);
