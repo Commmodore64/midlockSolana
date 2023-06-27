@@ -5,6 +5,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { uid } from "uid";
 import { MdModeEditOutline } from "react-icons/md";
 import { io } from "socket.io-client";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -62,12 +63,14 @@ const Home = () => {
       <div className="flex flex-col font-semibold text-4xl mt-12 ml-4">
         Home
         <h2 className="flex items-center justify-between text-xl font-semibold mt-10 ml-4">
-          <span className="mr-2">Med list</span>
+          <span className="mr-2">Your Med list</span>
+          <NavLink to="/edit">
           <button className="flex items-center text-blue-500 hover:text-blue-700 focus:outline-none">
             <span className="mr-5">
-              <MdModeEditOutline size={27} />
+              <MdModeEditOutline size={28} />
             </span>
           </button>
+          </NavLink>
         </h2>
       </div>
       <div className="flex flex-col flex-grow px-4 mt-5">
