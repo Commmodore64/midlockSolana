@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   const [data, setData] = useState([]);
   const storedUID = localStorage.getItem("uidToken");
-  const socket = io('http://localhost:5173'); // Cambia la URL por la del servidor de websockets
+  const socket = io('http://localhost:5173'); // URL para el servidor de websocket
 
   const fetchData = async () => {
     try {
