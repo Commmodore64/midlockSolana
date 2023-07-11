@@ -1,6 +1,6 @@
 import React from "react";
 import Wallpaper from "../assets/wallpaper.svg";
-import TabBar from "../components/TabBar";
+import TabBar from "../components/tabBar";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 

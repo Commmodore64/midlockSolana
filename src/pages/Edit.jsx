@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wallpaper from "../assets/wallpaper.svg";
-import TabBar from "../components/TabBar";
+import TabBar from "../components/tabBar";
 import { storage, firestore } from "../firebase/firebase.config";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
