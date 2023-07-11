@@ -4,6 +4,7 @@ import TabBar from "../components/TabBar";
 import { storage, firestore } from "../firebase/firebase.config";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getDatabase, ref as realtimeRef, set } from "firebase/database";
 
 function Edit() {
   const [medList, setMedList] = useState([]);
@@ -41,6 +42,29 @@ function Edit() {
     fetchData();
   }, []);
 
+  const handleButtonClick = async (medicamento) => {
+    // Obtén el uidToken almacenado en el almacenamiento del navegador
+    const uidToken = localStorage.getItem("uidToken");
+
+    // Verifica si el uidToken existe
+    if (uidToken) {
+      try {
+        // Crea una referencia a la base de datos en tiempo real
+        const database = getDatabase();
+        const userRef = realtimeRef(database, `users/${uidToken}`);
+
+        // Agrega el medicamento seleccionado a la base de datos en tiempo real
+        await set(userRef, {
+          medicamento: medicamento,
+        });
+
+        console.log("Medicamento agregado a la base de datos en tiempo real");
+      } catch (error) {
+        console.log("Error al agregar el medicamento a la base de datos en tiempo real: ", error);
+      }
+    }
+  };
+
   return (
     <div
       className="w-screen h-screen flex flex-col"
@@ -56,16 +80,9 @@ function Edit() {
       </h2>
       <div className="flex flex-wrap justify-center mt-4">
         {medList.map((med) => (
-                                 <button>
-            <div
-              key={med.id}
-              className="bg-white rounded-2xl shadow-lg p-5 mx-5 mb-5 w-52 h-60"
-            >
-              <img
-                className="object-contain w-32 h-38"
-                src={med.imageUrl}
-                alt="Image"
-              />
+          <button key={med.id} onClick={() => handleButtonClick(med.medicamento)}>
+            <div className="bg-white rounded-2xl shadow-lg p-5 mx-5 mb-5 w-52 h-60">
+              <img className="object-contain w-32 h-38" src={med.imageUrl} alt="Image" />
               <div className="text-center">
                 <h2 className="text-xl font-semibold">{med.medicamento}</h2>
                 <span className="text-sm">{med.descripcion}</span>
