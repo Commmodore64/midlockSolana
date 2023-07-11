@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TabBar from "../components/TabBar";
+import TabBar from "../components/tabBar";
 import Wallpaper from "../assets/wallpaper.svg";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { uid } from "uid";
