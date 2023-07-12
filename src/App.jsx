@@ -8,6 +8,18 @@ import Edit from "./pages/Edit"
 import Account from "./pages/Account"
 import Pincode from "./pages/Pincode"
 import { AuthProvider } from "./context/authContext";
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registrado:', registration);
+      })
+      .catch((error) => {
+        console.log('Error al registrar el Service Worker:', error);
+      });
+  });
+}
+
 
 function App() {
   return (
