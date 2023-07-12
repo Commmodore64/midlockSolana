@@ -8,12 +8,12 @@
     "theme_color": "#000000",
     "icons": [
         {
-            "src": "/src/assets/LogoSinFondo.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/midlock-5bcc3.appspot.com/o/LogoSinFondo.png?alt=media&token=d3a7ef84-177f-4eac-9e3c-b8aceff5afb5",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/src/assets/LogoSinFondo.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/midlock-5bcc3.appspot.com/o/LogoSinFondo.png?alt=media&token=d3a7ef84-177f-4eac-9e3c-b8aceff5afb5",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
