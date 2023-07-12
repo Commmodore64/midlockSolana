@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/LogoSinFondo.png";
 import Wallpaper5 from "../assets/wallpaper5.svg";
-import {useAuth} from "../context/authContext";
-import { Link } from 'react-router-dom';
+import { useAuth } from "../context/authContext";
+import { Link, NavLink } from "react-router-dom";
 
 function Signin() {
-  const auth = useAuth()
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  const handleLogin = (e) => {
+  const auth = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = async (e) => {
     e.preventDefault();
-    auth.login(email,password);
+    await auth.login(email, password);
+    window.location.href = "/home";
   };
   const handleGoogle = (e) => {
     e.preventDefault();
@@ -18,20 +19,18 @@ function Signin() {
   };
   useEffect(() => {
     const getUserUID = () => {
-      const storedUID = localStorage.getItem('uidToken'); // Obtener el UID almacenado en el almacenamiento local
-  
+      const storedUID = localStorage.getItem("uidToken"); // Obtener el UID almacenado en el almacenamiento local
+
       if (storedUID) {
         console.log("UID del usuario:", storedUID);
-        window.location.href="/home";
+        window.location.href = "/home";
       } else {
         console.log("No hay usuario autenticado");
       }
     };
-  
+
     getUserUID();
   }, []);
-  
-  
 
   return (
     <div
@@ -74,17 +73,20 @@ function Signin() {
           className="appearance-none rounded-2xl border-2 border-gray-700 py-3 px-14 pr-28 pl-4 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors duration-300"
           type="password"
           placeholder="Enter password"
-          onChange = {(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </form>
-      <button onClick={(e) => handleLogin(e)}className="bg-[#9AC1F0] text-white rounded-full py-3 px-36 mt-20 text-xl">
-        Login
-      </button>
+        <button
+          onClick={(e) => handleLogin(e)}
+          className="bg-[#9AC1F0] text-white rounded-full py-3 px-36 mt-20 text-xl"
+        >
+          Login
+        </button>
       <div className="px-6 sm:px-0 max-w-sm mt-6">
         <button
           type="button"
           className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-          onClick={(e)=> handleGoogle(e)}
+          onClick={(e) => handleGoogle(e)}
         >
           <svg
             className="mr-2 -ml-1 w-4 h-4"
@@ -107,7 +109,9 @@ function Signin() {
       <div className="flex flex-col items-center justify-center h-screen">
         <div className="flex flex-row mt-auto mb-5">
           <p className="text-center pr-2">Not register yet?</p>
-          <Link to="/signup" className="font-bold">Create Account</Link>
+          <Link to="/signup" className="font-bold">
+            Create Account
+          </Link>
         </div>
       </div>
     </div>
